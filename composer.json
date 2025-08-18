@@ -1,0 +1,19 @@
+{
+    "name": "topics/topics-manager",
+    "description": "Topics Manager Plugin",
+    "version": "1.0.0",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TopicsManager\\": "includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mahbub Hussain Mamun"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
