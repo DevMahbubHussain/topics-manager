@@ -28,12 +28,9 @@ class RenderClass
         }
         $configs = require_once $configPath;
 
-
-
         if (!is_array($configs)) {
             throw new RuntimeException("Post types config must return an array.");
         }
-
         add_action('init', function () use ($configs) {
             foreach ($configs as $config) {
                 try {
@@ -45,6 +42,6 @@ class RenderClass
                     error_log("Post type registration failed: " . $e->getMessage());
                 }
             }
-        });
+        },0);
     }
 }

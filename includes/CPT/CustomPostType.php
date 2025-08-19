@@ -13,22 +13,28 @@ class CustomPostType implements Registrable
 
     private string $name;
     private array|string $args;
+    private array $capabilities;
+    private array $roles;
     private array $taxonomies;
     private array $meta_boxes;
     private bool $isRegistered = false;
 
     public function __construct(
         string $name,
-         array $args = [],
-          array $taxonomies = [], array $meta_boxes = [])
-    {
+        array $args = [],
+        array $capabilities = [],
+        array $roles = [],
+        array $taxonomies = [],
+        array $meta_boxes = []
+    ) {
         $this->name = $name;
         $this->args = $args;
+        $this->capabilities = $capabilities;
+        $this->roles = $roles;
         $this->taxonomies = $taxonomies;
         $this->meta_boxes = $meta_boxes;
 
-          if (!empty($capabilities)) $this->args['capabilities'] = $capabilities;
-        
+        if (!empty($capabilities)) $this->args['capabilities'] = $capabilities;
     }
 
     public function register(): void
@@ -41,7 +47,7 @@ class CustomPostType implements Registrable
         if (is_wp_error($result)) {
             error_log("Failed to register post type: " . $result->get_error_message());
         }
-
+       
         // Register taxonomies (if any)
         foreach ($this->taxonomies as $taxonomy) {
             $taxonomy->register();
@@ -52,9 +58,16 @@ class CustomPostType implements Registrable
             $meta = new MetaBox($this->name, $box);
             $meta->register();
         }
-
-     
+        $this->assignCapabilities();
     }
 
-   
+    private function assignCapabilities(): void
+    {
+        foreach ($this->roles as $role_name) {
+            $role = get_role($role_name);
+            if ($role && !empty($this->capabilities)) {
+                foreach ($this->capabilities as $cap) $role->add_cap($cap);
+            }
+        }
+    }
 }

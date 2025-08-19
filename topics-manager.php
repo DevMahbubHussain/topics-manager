@@ -18,14 +18,12 @@
 
 if (!defined('ABSPATH')) exit;
 
-// require_once  __DIR__ . '/bootstrap.php';
 final class TopicsManager
 {
-
     const VERSION = '1.0';
     const SLUG = 'topics-manager';
 
-    public function __construct()
+    private function __construct()
     {
         require_once __DIR__ . '/vendor/autoload.php';
         $this->includes();
@@ -49,16 +47,16 @@ final class TopicsManager
         // Base paths
         define('TM_ROOT_DIR', plugin_dir_path(__FILE__));
         define('TM_PLUGIN_FILE', __FILE__);
-        define('TM_PLUGIN_DIR', plugin_dir_path(TM_PLUGIN_FILE)); 
-        define('TM_PLUGIN_URL', plugin_dir_url(TM_PLUGIN_FILE));  
+        define('TM_PLUGIN_DIR', plugin_dir_path(TM_PLUGIN_FILE));
+        define('TM_PLUGIN_URL', plugin_dir_url(TM_PLUGIN_FILE));
 
         // Useful subdirectories
-        define('TM_INCLUDES_DIR', TM_PLUGIN_DIR . 'includes/');   
-        define('TM_TEMPLATES_DIR', TM_PLUGIN_DIR . 'templates/');  
+        define('TM_INCLUDES_DIR', TM_PLUGIN_DIR . 'includes/');
+        define('TM_TEMPLATES_DIR', TM_PLUGIN_DIR . 'templates/');
 
         // Public-facing URLs
-        define('TM_ASSETS_URL', TM_PLUGIN_URL . 'assets/');        
-        define('TM_BUILD_URL', TM_PLUGIN_URL . 'build/');         
+        define('TM_ASSETS_URL', TM_PLUGIN_URL . 'src/assets/');
+        define('TM_BUILD_URL', TM_PLUGIN_URL . 'build/');
     }
 
     private function is_request($type)
@@ -81,7 +79,6 @@ final class TopicsManager
         }
     }
 
-
     private function includes()
     {
         if ($this->is_request('admin')) {
@@ -93,16 +90,17 @@ final class TopicsManager
         $this->init_common();
     }
 
-    private function init_admin() {
-    //    new TopicsManager\RenderClass();
-     new TopicsManager\CPT\RenderClass();
-
-    //   new \EcoProfile\Master\Admin();
+    private function init_admin()
+    {
+        new \TopicsManager\Assets\Manager();
     }
 
     private function init_frontend() {}
 
-    private function init_common() {}
+    private function init_common()
+    {
+        new TopicsManager\CPT\RenderClass();
+    }
 }
 
 

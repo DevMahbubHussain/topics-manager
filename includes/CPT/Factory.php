@@ -18,6 +18,8 @@ class Factory
         return new CustomPostType(
             $config['name'],
             $config['args'] ?? [],
+            $config['capabilities'] ?? [],
+            $config['roles'] ?? [],
             $taxonomies,
             $config['meta_boxes'] ?? []
         );
