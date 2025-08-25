@@ -67,37 +67,37 @@ return [
     ],
 
     // 2nd cpt without taxonomy and metabox 
-    [
-        'name' => 'movies',
-        'args' => [
-            'label' => 'Movies',
-            'public' => true,
-            'show_in_rest' => true,
-            'rest_base' => 'movies',
-            'rest_controller_class' => 'WP_REST_Posts_Controller',
-            'capability_type' => 'post',
-            'supports' => ['title', 'editor', 'thumbnail'],
-        ],
+    // [
+    //     'name' => 'movies',
+    //     'args' => [
+    //         'label' => 'Movies',
+    //         'public' => true,
+    //         'show_in_rest' => true,
+    //         'rest_base' => 'movies',
+    //         'rest_controller_class' => 'WP_REST_Posts_Controller',
+    //         'capability_type' => 'post',
+    //         'supports' => ['title', 'editor', 'thumbnail'],
+    //     ],
 
-    ],
+    // ],
 
     // 3rd cpt with taxonomy
-    [
-        'name' => 'wordpress',
-        'args' => [
-            'label' => 'WordPress',
-            'public' => true,
-            'show_in_rest' => true,
-            'rest_base' => 'WordPress',
-            'rest_controller_class' => 'WP_REST_Posts_Controller',
-            'capability_type' => 'post',
-            'supports' => ['title', 'editor', 'thumbnail'],
-        ],
-        'taxonomies' => [
-            ['name' => 'plugin', 'args' => ['label' => 'Plugins', 'hierarchical' => true, 'show_in_rest' => true]],
-            ['name' => 'theme', 'args' => ['label' => 'Themes', 'hierarchical' => false, 'show_in_rest' => true]],
-        ],
+    // [
+    //     'name' => 'wordpress',
+    //     'args' => [
+    //         'label' => 'WordPress',
+    //         'public' => true,
+    //         'show_in_rest' => true,
+    //         'rest_base' => 'WordPress',
+    //         'rest_controller_class' => 'WP_REST_Posts_Controller',
+    //         'capability_type' => 'post',
+    //         'supports' => ['title', 'editor', 'thumbnail'],
+    //     ],
+    //     'taxonomies' => [
+    //         ['name' => 'plugin', 'args' => ['label' => 'Plugins', 'hierarchical' => true, 'show_in_rest' => true]],
+    //         ['name' => 'theme', 'args' => ['label' => 'Themes', 'hierarchical' => false, 'show_in_rest' => true]],
+    //     ],
 
-    ],
+    // ],
 
 ];

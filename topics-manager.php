@@ -15,6 +15,7 @@
  * Domain Path: /public/lang
  */
 
+use App\Frontend\TopicsManagerFrontend;
 
 if (!defined('ABSPATH')) exit;
 
@@ -95,7 +96,10 @@ final class TopicsManager
         new \TopicsManager\Assets\Manager();
     }
 
-    private function init_frontend() {}
+    private function init_frontend() {
+        // new \TopicsManager\Frontend\TopicsManagerFrontend();  //Simplified Frontend Approach
+        TopicsManager\MVC\Bootstrap::init();  //MVC Frontend Approach
+    }
 
     private function init_common()
     {
